@@ -1,6 +1,9 @@
 export const doughnutLegends = [
-  { title: 'Shirts', color: 'bg-blue-500' },
-  { title: 'Shoes', color: 'bg-teal-600' },
+  { title: 'electronic', color: 'bg-blue-500' },
+  { title: 'footwear', color: 'bg-teal-600' },
+  { title: 'cloths', color: 'bg-purple-600' },
+  { title: 'kitchen', color: 'bg-red-400' },
+  { title: 'accessories', color: 'bg-purple-600' },
   { title: 'Bags', color: 'bg-purple-600' },
 ]
 
@@ -18,16 +21,16 @@ export const doughnutOptions = {
   data: {
     datasets: [
       {
-        data: [33, 33, 33],
+        data: [15,15,15,15,15,15],
         /**
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
          */
-        backgroundColor: ['#0694a2', '#1c64f2', '#7e3af2'],
+        backgroundColor: ['#0694a2', '#1c64f2', '#7e3af2','#0694a2', '#1c64f2', '#7e3af2'],
         label: 'Dataset 1',
       },
     ],
-    labels: ['Shoes', 'Shirts', 'Bags'],
+    labels: ['Shoes', 'Shirts', 'Bags','Shoes', 'Shirts', 'Bags', ],
   },
   options: {
     responsive: true,

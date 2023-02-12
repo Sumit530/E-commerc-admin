@@ -30,7 +30,7 @@ function Login() {
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Login</h1>
               <Label>
                 <span>Email</span>
-                <Input className="mt-1" type="email" placeholder="john@doe.com" />
+                <Input className="mt-1" type="email" placeholder="Enter admin name here" />
               </Label>
 
               <Label className="mt-4">

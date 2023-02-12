@@ -16,15 +16,15 @@ import {
 function Charts() {
   return (
     <>
-      <PageTitle>Charts</PageTitle>
+      <PageTitle>Sales</PageTitle>
 
       <div className="grid gap-6 mb-8 md:grid-cols-2">
-        <ChartCard title="Doughnut">
+        <ChartCard title="sales">
           <Doughnut {...doughnutOptions} />
           <ChartLegend legends={doughnutLegends} />
         </ChartCard>
 
-        <ChartCard title="Lines">
+        <ChartCard title="Revenue">
           <Line {...lineOptions} />
           <ChartLegend legends={lineLegends} />
         </ChartCard>
