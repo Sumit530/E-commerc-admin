@@ -11,6 +11,7 @@ import {AiOutlineHome} from "react-icons/ai"
 import {RiProductHuntLine} from "react-icons/ri"
 import {FaHospitalUser} from "react-icons/fa"
 import {BiCategoryAlt} from "react-icons/bi"
+import {GoReport} from "react-icons/go"
 
 const routes = [
   {
@@ -29,7 +30,7 @@ const routes = [
   //   name: 'Cards',
   // },
   {
-    path: '/app/charts',
+    path: '/app/sales',
     icon: <AiOutlineShoppingCart/>,
     name: 'Sales',
   },
@@ -44,19 +45,24 @@ const routes = [
   //   name: 'Modals',
   // },
   {
-    path: '/app/tables',
+    path: '/app/products',
     icon: <RiProductHuntLine/>,
     name: 'Products',
   },
   {
-    path: '/app/tables',
+    path: '/app/sellers',
     icon: <FaHospitalUser/>,
     name: 'Sellers',
   },
   {
-    path: '/app/tables',
+    path: '/app/category',
     icon: <BiCategoryAlt/>,
-    name: 'category',
+    name: 'Category',
+  },
+  {
+    path: '/app/complaint',
+    icon: <GoReport/>,
+    name: 'Complaints',
   },
   // {
   //   icon: 'PagesIcon',

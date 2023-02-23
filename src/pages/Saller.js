@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import PageTitle from '../components/Typography/PageTitle'
 import SectionTitle from '../components/Typography/SectionTitle'
 import CTA from '../components/CTA'
+import {AiFillEye} from "react-icons/ai"
 import {
   Table,
   TableHeader,
@@ -38,10 +39,22 @@ function Seller() {
   // setup data for every table
   const [dataTable1, setDataTable1] = useState([])
   const [dataTable2, setDataTable2] = useState([])
+  const resultsPerPage = 10
+  const sellers =  [...Array(50)].map((e,i)=>{
+          return({
+            avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/woodydotmx/128.jpg',
+     name: 'Shayna Schumm',
+    job: 'Future Directives Engineer',
+    amount: 313.73,
+    status: 'warning',
+    date: 'Wed Jul 03 2019 10:01:06 GMT-0300 (Brasilia Standard Time)',
+          })
+    })
+   var  pagedseller = sellers.slice((pageTable1 - 1) * resultsPerPage, pageTable1 * resultsPerPage)
 
   // pagination setup
-  const resultsPerPage = 10
-  const totalResults = response.length
+  
+  const totalResults = sellers.length
 
   // pagination change control
   function onPageChangeTable1(p) {
@@ -65,25 +78,27 @@ function Seller() {
     setDataTable2(response2.slice((pageTable2 - 1) * resultsPerPage, pageTable2 * resultsPerPage))
   }, [pageTable2])
 
+
+ 
   return (
     <>
       <PageTitle>Sellers</PageTitle>
 
       <CTA />
 
-      <SectionTitle>Simple table</SectionTitle>
+      <SectionTitle>Pending Sellers</SectionTitle>
       <TableContainer className="mb-8">
         <Table>
           <TableHeader>
             <tr>
-              <TableCell>Client</TableCell>
-              <TableCell>Amount</TableCell>
+              <TableCell>Seller</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>Date</TableCell>
+              <TableCell>Action</TableCell>
             </tr>
           </TableHeader>
           <TableBody>
-            {dataTable1.map((user, i) => (
+            {pagedseller.map((user, i) => (
               <TableRow key={i}>
                 <TableCell>
                   <div className="flex items-center text-sm">
@@ -95,13 +110,20 @@ function Seller() {
                   </div>
                 </TableCell>
                 <TableCell>
-                  <span className="text-sm">$ {user.amount}</span>
-                </TableCell>
-                <TableCell>
-                  <Badge type={user.status}>{user.status}</Badge>
+                  <Badge type={user.status}>pending</Badge>
                 </TableCell>
                 <TableCell>
                   <span className="text-sm">{new Date(user.date).toLocaleDateString()}</span>
+                </TableCell>
+                <TableCell>
+                <div className="flex items-center space-x-4">
+                    <Button layout="link" size="icon" aria-label="Edit">
+                      <AiFillEye className="w-5 h-5" aria-hidden="true" />
+                    </Button>
+                    <Button layout="link" size="icon" aria-label="Delete">
+                      <TrashIcon className="w-5 h-5" aria-hidden="true" />
+                    </Button>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
