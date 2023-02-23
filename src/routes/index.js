@@ -11,6 +11,7 @@ const Tables = lazy(() => import('../pages/Tables'))
 const Page404 = lazy(() => import('../pages/404'))
 const Blank = lazy(() => import('../pages/Blank'))
 const Seller = lazy(() => import('../pages/Saller'))
+const Product = lazy(() => import('../pages/Product'))
 
 /**
  * ⚠ These are internal routes!
@@ -29,7 +30,7 @@ const routes = [
   },
   {
     path: '/products',
-    component: Tables,
+    component: Product,
   },
   {
     path: '/sellers',
