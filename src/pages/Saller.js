@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react'
 import PageTitle from '../components/Typography/PageTitle'
 import SectionTitle from '../components/Typography/SectionTitle'
 import CTA from '../components/CTA'
-import {AiFillEye} from "react-icons/ai"
-import {
-  Table,
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button , Table,
   TableHeader,
   TableCell,
   TableBody,
@@ -14,9 +12,8 @@ import {
   TableContainer,
   Badge,
   Avatar,
-  Button,
-  Pagination,
-} from '@windmill/react-ui'
+  Pagination,} from '@windmill/react-ui'
+import {AiFillEye} from "react-icons/ai"
 import { EditIcon, TrashIcon } from '../icons'
 
 import response from '../utils/demo/tableData'
@@ -24,13 +21,17 @@ import response from '../utils/demo/tableData'
 const response2 = response.concat([])
 
 function Seller() {
-  /**
-   * DISCLAIMER: This code could be badly improved, but for the sake of the example
-   * and readability, all the logic for both table are here.
-   * You would be better served by dividing each table in its own
-   * component, like Table(?) and TableWithActions(?) hiding the
-   * presentation details away from the page view.
-   */
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  function openModal() {
+    setIsModalOpen(true)
+    setIsEditModalOpen(true)
+  }
+
+  function closeModal() {
+    setIsModalOpen(false)
+  }
 
   // setup pages control for every table
   const [pageTable1, setPageTable1] = useState(1)
@@ -84,7 +85,7 @@ function Seller() {
     <>
       <PageTitle>Sellers</PageTitle>
 
-      <CTA />
+      {/* <CTA /> */}
 
       <SectionTitle>Pending Sellers</SectionTitle>
       <TableContainer className="mb-8">
@@ -117,10 +118,10 @@ function Seller() {
                 </TableCell>
                 <TableCell>
                 <div className="flex items-center space-x-4">
-                    <Button layout="link" size="icon" aria-label="Edit">
+                    <Button layout="link" size="icon" aria-label="Edit"onClick={openModal}>
                       <AiFillEye className="w-5 h-5" aria-hidden="true" />
                     </Button>
-                    <Button layout="link" size="icon" aria-label="Delete">
+                    <Button layout="link" size="icon" aria-label="Delete" onClick={()=>{setIsDeleteModalOpen(true)}}>
                       <TrashIcon className="w-5 h-5" aria-hidden="true" />
                     </Button>
                   </div>
@@ -139,7 +140,7 @@ function Seller() {
         </TableFooter>
       </TableContainer>
 
-      <SectionTitle>Table with actions</SectionTitle>
+      <SectionTitle>Sellers</SectionTitle>
       <TableContainer className="mb-8">
         <Table>
           <TableHeader>
@@ -174,7 +175,7 @@ function Seller() {
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center space-x-4">
-                    <Button layout="link" size="icon" aria-label="Edit">
+                    <Button layout="link" size="icon" aria-label="Edit" onClick = {()=>{setIsEditModalOpen(true)}}>
                       <EditIcon className="w-5 h-5" aria-hidden="true" />
                     </Button>
                     <Button layout="link" size="icon" aria-label="Delete">
@@ -195,6 +196,159 @@ function Seller() {
           />
         </TableFooter>
       </TableContainer>
+
+      <SectionTitle>Reported Sellers</SectionTitle>
+      <TableContainer className="mb-8">
+        <Table>
+          <TableHeader>
+            <tr>
+              <TableCell>Client</TableCell>
+              <TableCell>Amount</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Date</TableCell>
+              <TableCell>Actions</TableCell>
+            </tr>
+          </TableHeader>
+          <TableBody>
+            {dataTable2.map((user, i) => (
+              <TableRow key={i}>
+                <TableCell>
+                  <div className="flex items-center text-sm">
+                    <Avatar className="hidden mr-3 md:block" src={user.avatar} alt="User avatar" />
+                    <div>
+                      <p className="font-semibold">{user.name}</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">{user.job}</p>
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <span className="text-sm">$ {user.amount}</span>
+                </TableCell>
+                <TableCell>
+                  <Badge type={user.status}>{user.status}</Badge>
+                </TableCell>
+                <TableCell>
+                  <span className="text-sm">{new Date(user.date).toLocaleDateString()}</span>
+                </TableCell>
+                <TableCell>
+                  <div className="flex items-center space-x-4">
+                    <Button layout="link" size="icon" aria-label="Edit" onClick = {()=>{setIsEditModalOpen(true)}}>
+                      <EditIcon className="w-5 h-5" aria-hidden="true" />
+                    </Button>
+                    <Button layout="link" size="icon" aria-label="Delete">
+                      <TrashIcon className="w-5 h-5" aria-hidden="true" />
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <TableFooter>
+          <Pagination
+            totalResults={totalResults}
+            resultsPerPage={resultsPerPage}
+            onChange={onPageChangeTable2}
+            label="Table navigation"
+          />
+        </TableFooter>
+      </TableContainer>
+
+
+      {/* modal for view seller */}
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <ModalHeader>Modal header</ModalHeader>
+        <ModalBody>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum et eligendi repudiandae
+          voluptatem tempore!
+        </ModalBody>
+        <ModalFooter>
+          {/* I don't like this approach. Consider passing a prop to ModalFooter
+           * that if present, would duplicate the buttons in a way similar to this.
+           * Or, maybe find some way to pass something like size="large md:regular"
+           * to Button
+           */}
+          <div className="hidden sm:block">
+            <Button layout="outline" onClick={closeModal}>
+              Cancel
+            </Button>
+          </div>
+          <div className="hidden sm:block">
+            <Button>Accept</Button>
+          </div>
+          <div className="block w-full sm:hidden">
+            <Button block size="large" layout="outline" onClick={closeModal}>
+              Cancel
+            </Button>
+          </div>
+          <div className="block w-full sm:hidden">
+            <Button block size="large">
+              Accept
+            </Button>
+          </div>
+        </ModalFooter>
+      </Modal>
+
+      {/* modal for edit  */}
+      <Modal isOpen={isEditModalOpen} onClose={()=>{setIsEditModalOpen(false)}}>
+        <ModalHeader>Modal header</ModalHeader>
+        <ModalBody>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum et eligendi repudiandae
+          voluptatem tempore!
+        </ModalBody>
+        <ModalFooter>
+          {/* I don't like this approach. Consider passing a prop to ModalFooter
+           * that if present, would duplicate the buttons in a way similar to this.
+           * Or, maybe find some way to pass something like size="large md:regular"
+           * to Button
+           */}
+          <div className="hidden sm:block">
+            <Button layout="outline" onClose={()=>{setIsEditModalOpen(false)}}>
+              Cancel
+            </Button>
+          </div>
+          <div className="hidden sm:block">
+            <Button>Accept</Button>
+          </div>
+          <div className="block w-full sm:hidden">
+            <Button block size="large" layout="outline" onClose={()=>{setIsEditModalOpen(false)}}>
+              Cancel
+            </Button>
+          </div>
+          <div className="block w-full sm:hidden">
+            <Button block size="large">
+              Accept
+            </Button>
+          </div>
+        </ModalFooter>
+      </Modal>
+      {/* delete modal  */}
+      <Modal isOpen={isDeleteModalOpen} onClose={()=>{setIsDeleteModalOpen(false)}}>
+        <ModalHeader>Confirm Delete</ModalHeader>
+        <ModalBody>
+         Are you sure want to delete this seller ?
+        </ModalBody>
+        <ModalFooter>
+          <div className="hidden sm:block">
+            <Button layout="outline" onClick={()=>{setIsDeleteModalOpen(false)}}>
+              Cancel
+            </Button>
+          </div>
+          <div className="hidden sm:block">
+            <button style={{borderRadius:"10px"}} className='px-4  py-2 bg-red-600 text-white'>Delete</button>
+          </div>
+          <div className="block w-full sm:hidden">
+            <Button block size="large" layout="outline" onClick={()=>{setIsDeleteModalOpen(false)}}>
+              Cancel
+            </Button>
+          </div>
+          <div className="block w-full sm:hidden">
+            <Button block  className="bg-red-200" Colors="Adafruit_SSD1306.create_spi(0, 0, 0, 0)" >
+              Delete
+            </Button>
+          </div>
+        </ModalFooter>
+      </Modal>
     </>
   )
 }

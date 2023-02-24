@@ -9,6 +9,7 @@ import ChartLegend from '../components/Chart/ChartLegend'
 import PageTitle from '../components/Typography/PageTitle'
 import { ChatIcon, CartIcon, MoneyIcon, PeopleIcon } from '../icons'
 import RoundIcon from '../components/RoundIcon'
+import SectionTitle from '../components/Typography/SectionTitle'
 import response from '../utils/demo/tableData'
 import {
   TableBody,
@@ -54,6 +55,7 @@ function Dashboard() {
       <PageTitle>Home</PageTitle>
 
       {/* <!-- Cards --> */}
+      
       <div className="grid gap-4 mb-8 md:grid-cols-2 xl:grid-cols-5">
         <InfoCard title="Total Sellers" value="6389">
           <RoundIcon
@@ -99,14 +101,14 @@ function Dashboard() {
           />
         </InfoCard>
       </div>
-
+      <SectionTitle>Top Sellers</SectionTitle>
       <TableContainer>
         <Table>
           <TableHeader>
             <tr>
               <TableCell>Client</TableCell>
-              <TableCell>Amount</TableCell>
-              <TableCell>Status</TableCell>
+              <TableCell>sales</TableCell>
+              <TableCell>Ratings</TableCell>
               <TableCell>Date</TableCell>
             </tr>
           </TableHeader>
@@ -117,16 +119,16 @@ function Dashboard() {
                   <div className="flex items-center text-sm">
                     <Avatar className="hidden mr-3 md:block" src={user.avatar} alt="User image" />
                     <div>
-                      <p className="font-semibold">{user.name}</p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">{user.job}</p>
+                      <p className="font-semibold">Sumit Patel</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Electronic and Gadgets</p>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell>
-                  <span className="text-sm">$ {user.amount}</span>
+                  <span className="text-sm">₹ 78,456</span>
                 </TableCell>
                 <TableCell>
-                  <Badge type={user.status}>{user.status}</Badge>
+                  <Badge type="success">4.8 stars</Badge>
                 </TableCell>
                 <TableCell>
                   <span className="text-sm">{new Date(user.date).toLocaleDateString()}</span>

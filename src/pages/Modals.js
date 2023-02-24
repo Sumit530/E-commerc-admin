@@ -18,7 +18,7 @@ function Modals() {
   return (
     <>
       <PageTitle>Modals</PageTitle>
-      <CTA />
+      {/* <CTA /> */}
 
       <div>
         <Button onClick={openModal}>Open modal</Button>

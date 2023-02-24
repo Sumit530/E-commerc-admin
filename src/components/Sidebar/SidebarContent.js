@@ -8,6 +8,7 @@ import {AiOutlineShoppingCart} from "react-icons/ai"
 import {AiOutlineHome} from "react-icons/ai"
 import {RiProductHuntLine} from "react-icons/ri"
 import {FaHospitalUser} from "react-icons/fa"
+import Logo from "../../assets/img/logo.png"
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon]
@@ -17,10 +18,10 @@ function Icon({ icon, ...props }) {
 function SidebarContent() {
   return (
     <div className="py-4 text-gray-500 dark:text-gray-400">
-      <a className="ml-10 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
-        Prizee
+      <a className="" href="#" className="mb-10">
+      <img src={Logo} className="w-32 object-cover fixed " />
       </a>
-      <ul className="mt-6">
+      <ul className="mt-12">
         {routes.map((route) =>
           route.routes ? (
             <SidebarSubmenu route={route} key={route.name} />

@@ -69,7 +69,7 @@ function Tables() {
     <>
       <PageTitle>Tables</PageTitle>
 
-      <CTA />
+      {/* <CTA /> */}
 
       <SectionTitle>Simple table</SectionTitle>
       <TableContainer className="mb-8">

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import Logo from "../assets/img/logo.png"
 import { SidebarContext } from '../context/SidebarContext'
 import {
   SearchIcon,
