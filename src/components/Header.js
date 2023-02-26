@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import Logo from "../assets/img/logo.png"
+
 import { SidebarContext } from '../context/SidebarContext'
 import {
   SearchIcon,
@@ -54,7 +54,7 @@ function Header() {
         </div>
         <ul className="flex items-center flex-shrink-0 space-x-6">
           {/* <!-- Theme toggler --> */}
-          <li className="flex">
+          {/* <li className="flex">
             <button
               className="rounded-md focus:outline-none focus:shadow-outline-purple"
               onClick={toggleMode}
@@ -67,7 +67,7 @@ function Header() {
               )}
             </button>
           </li>
-          {/* <!-- Notifications menu --> */}
+           <!-- Notifications menu --> 
           <li className="relative">
             <button
               className="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
@@ -76,7 +76,7 @@ function Header() {
               aria-haspopup="true"
             >
               <BellIcon className="w-5 h-5" aria-hidden="true" />
-              {/* <!-- Notification badge --> */}
+               <!-- Notification badge --> 
               <span
                 aria-hidden="true"
                 className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"
@@ -100,7 +100,7 @@ function Header() {
                 <span>Alerts</span>
               </DropdownItem>
             </Dropdown>
-          </li>
+          </li> */}
           {/* <!-- Profile menu --> */}
           <li className="relative">
             <button

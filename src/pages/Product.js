@@ -83,11 +83,9 @@ function Peller() {
  
   return (
     <>
-      <PageTitle>Sellers</PageTitle>
+      <PageTitle>Products</PageTitle>
 
-      {/* <CTA /> */}
-
-      <SectionTitle>Pending Sellers</SectionTitle>
+      <SectionTitle>Pending products</SectionTitle>
       <TableContainer className="mb-8">
         <Table>
           <TableHeader>

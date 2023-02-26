@@ -18,9 +18,9 @@ function Icon({ icon, ...props }) {
 function SidebarContent() {
   return (
     <div className="py-4 text-gray-500 dark:text-gray-400">
-      <a className="" href="#" className="mb-10">
-      <img src={Logo} className="w-32 object-cover fixed " />
-      </a>
+      <NavLink  to="/app/dashboard" className="" >
+      <img src={Logo} className="w-32 object-cover fixed  " style={{top:-30}}/>
+      </NavLink>
       <ul className="mt-12">
         {routes.map((route) =>
           route.routes ? (

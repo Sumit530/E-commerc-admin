@@ -12,9 +12,6 @@ function Cards() {
   return (
     <>
       <PageTitle>Cards</PageTitle>
-
-      {/* <CTA /> */}
-
       <SectionTitle>Big section cards</SectionTitle>
 
       <Card className="mb-8 shadow-md">

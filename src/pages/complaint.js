@@ -83,13 +83,13 @@ function Seller() {
  
   return (
     <>
-      <PageTitle>Sellers</PageTitle>
-      <SectionTitle>Pending Sellers</SectionTitle>
+      <PageTitle>Complaint</PageTitle>
+      <SectionTitle>All Complaints</SectionTitle>
       <TableContainer className="mb-8">
         <Table>
           <TableHeader>
             <tr>
-              <TableCell>Seller</TableCell>
+              <TableCell>Complaint</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>Date</TableCell>
               <TableCell>Action</TableCell>
@@ -137,134 +137,16 @@ function Seller() {
         </TableFooter>
       </TableContainer>
 
-      <SectionTitle>Sellers</SectionTitle>
-      <TableContainer className="mb-8">
-        <Table>
-          <TableHeader>
-            <tr>
-              <TableCell>Seller</TableCell>
-              <TableCell>Amount</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Actions</TableCell>
-            </tr>
-          </TableHeader>
-          <TableBody>
-            {dataTable2.map((user, i) => (
-              <TableRow key={i}>
-                <TableCell>
-                  <div className="flex items-center text-sm">
-                    <Avatar className="hidden mr-3 md:block" src={user.avatar} alt="User avatar" />
-                    <div>
-                      <p className="font-semibold">{user.name}</p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">{user.job}</p>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <span className="text-sm"> {user.amount}</span>
-                </TableCell>
-                <TableCell>
-                  <Badge type="success">{"active"}</Badge>
-                </TableCell>
-                <TableCell>
-                  <span className="text-sm">{new Date(user.date).toLocaleDateString()}</span>
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center space-x-4">
-                    <Button layout="link" size="icon" aria-label="Edit" onClick = {()=>{setIsEditModalOpen(true)}}>
-                      <EditIcon className="w-5 h-5" aria-hidden="true" />
-                    </Button>
-                    <Button layout="link" size="icon" aria-label="Delete">
-                      <TrashIcon className="w-5 h-5" aria-hidden="true" />
-                    </Button>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <TableFooter>
-          <Pagination
-            totalResults={totalResults}
-            resultsPerPage={resultsPerPage}
-            onChange={onPageChangeTable2}
-            label="Table navigation"
-          />
-        </TableFooter>
-      </TableContainer>
-
-      <SectionTitle>Reported Sellers</SectionTitle>
-      <TableContainer className="mb-8">
-        <Table>
-          <TableHeader>
-            <tr>
-              <TableCell>Client</TableCell>
-              <TableCell>Amount</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Actions</TableCell>
-            </tr>
-          </TableHeader>
-          <TableBody>
-            {dataTable2.map((user, i) => (
-              <TableRow key={i}>
-                <TableCell>
-                  <div className="flex items-center text-sm">
-                    <Avatar className="hidden mr-3 md:block" src={user.avatar} alt="User avatar" />
-                    <div>
-                      <p className="font-semibold">{user.name}</p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">{user.job}</p>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <span className="text-sm"> {user.amount}</span>
-                </TableCell>
-                <TableCell>
-                  <Badge type={"success"}>{"active"}</Badge>
-                </TableCell>
-                <TableCell>
-                  <span className="text-sm">{new Date(user.date).toLocaleDateString()}</span>
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center space-x-4">
-                    <Button layout="link" size="icon" aria-label="Edit" onClick = {()=>{setIsEditModalOpen(true)}}>
-                      <EditIcon className="w-5 h-5" aria-hidden="true" />
-                    </Button>
-                    <Button layout="link" size="icon" aria-label="Delete">
-                      <TrashIcon className="w-5 h-5" aria-hidden="true" />
-                    </Button>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <TableFooter>
-          <Pagination
-            totalResults={totalResults}
-            resultsPerPage={resultsPerPage}
-            onChange={onPageChangeTable2}
-            label="Table navigation"
-          />
-        </TableFooter>
-      </TableContainer>
 
 
       {/* modal for view seller */}
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <ModalHeader>Modal header</ModalHeader>
+        <ModalHeader>Complaint content</ModalHeader>
         <ModalBody>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum et eligendi repudiandae
           voluptatem tempore!
         </ModalBody>
-        <ModalFooter>
-          {/* I don't like this approach. Consider passing a prop to ModalFooter
-           * that if present, would duplicate the buttons in a way similar to this.
-           * Or, maybe find some way to pass something like size="large md:regular"
-           * to Button
-           */}
+        {/* <ModalFooter>
           <div className="hidden sm:block">
             <Button layout="outline" onClick={closeModal}>
               Cancel
@@ -283,47 +165,16 @@ function Seller() {
               Accept
             </Button>
           </div>
-        </ModalFooter>
+        </ModalFooter> */}
       </Modal>
 
       {/* modal for edit  */}
-      <Modal isOpen={isEditModalOpen} onClose={()=>{setIsEditModalOpen(false)}}>
-        <ModalHeader>Modal header</ModalHeader>
-        <ModalBody>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum et eligendi repudiandae
-          voluptatem tempore!
-        </ModalBody>
-        <ModalFooter>
-          {/* I don't like this approach. Consider passing a prop to ModalFooter
-           * that if present, would duplicate the buttons in a way similar to this.
-           * Or, maybe find some way to pass something like size="large md:regular"
-           * to Button
-           */}
-          <div className="hidden sm:block">
-            <Button layout="outline" onClose={()=>{setIsEditModalOpen(false)}}>
-              Cancel
-            </Button>
-          </div>
-          <div className="hidden sm:block">
-            <Button>Accept</Button>
-          </div>
-          <div className="block w-full sm:hidden">
-            <Button block size="large" layout="outline" onClose={()=>{setIsEditModalOpen(false)}}>
-              Cancel
-            </Button>
-          </div>
-          <div className="block w-full sm:hidden">
-            <Button block size="large">
-              Accept
-            </Button>
-          </div>
-        </ModalFooter>
-      </Modal>
+      
       {/* delete modal  */}
       <Modal isOpen={isDeleteModalOpen} onClose={()=>{setIsDeleteModalOpen(false)}}>
         <ModalHeader>Confirm Delete</ModalHeader>
         <ModalBody>
-         Are you sure want to delete this seller ?
+         Are you sure want to delete this complaint ?
         </ModalBody>
         <ModalFooter>
           <div className="hidden sm:block">

@@ -60,7 +60,7 @@ function Dashboard() {
         <InfoCard title="Total Sellers" value="6389">
           <RoundIcon
             icon={PeopleIcon}
-            iconColorClass="text-orange-500 dark:text-orange-100"
+            iconColorClass="text-red-500 dark:text-orange-100"
             bgColorClass="bg-orange-100 dark:bg-orange-500"
             className="mr-4"
           />

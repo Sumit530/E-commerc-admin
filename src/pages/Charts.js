@@ -29,10 +29,10 @@ function Charts() {
           <ChartLegend legends={lineLegends} />
         </ChartCard>
 
-        <ChartCard title="Bars">
+        {/* <ChartCard title="Bars">
           <Bar {...barOptions} />
           <ChartLegend legends={barLegends} />
-        </ChartCard>
+        </ChartCard> */}
       </div>
     </>
   )
